@@ -1,0 +1,24 @@
+#include "dialog.h"
+#include "ui_dialog.h"
+
+Dialog::Dialog(QWidget *parent)
+    : QDialog(parent)
+    , ui(new Ui::Dialog)
+{
+    ui->setupUi(this);
+}
+
+Dialog::~Dialog()
+{
+    delete ui;
+}
+
+void Dialog::on_buttonBox_accepted()
+{
+    QString nazwisko = ui->Nazwisko->toPlainText();
+    int wiek = ui->Wiek->value();
+    int punkty = ui->Punkty->value();
+
+    emit dodajSportowca(nazwisko,wiek,punkty);
+}
+
